@@ -14,6 +14,7 @@
     <style>/*<jdists import="css/selector_helper.css" />*/</style>
     <style type="text/template">
       {{input}} {
+        outline: dodgerblue dashed 2px;
         animation: selector_helper_flash 2s infinite ease-in-out;
         -webkit-animation: selector_helper_flash 2s infinite ease-in-out;
       }
@@ -21,7 +22,7 @@
     <div class="selector_helper_panel">
       <a class="selector_logo selector_icon" href="http://weibo.com/zswang" target="_blank"></a>
       <ul>
-        <li><label>selector query</label><input type="text" class="selector_query"></li>
+        <li><input type="text" class="selector_query"></li>
         <li><input class="selector_close" type="button" value="Close"></li>
       </ul>
     </div>
@@ -29,11 +30,11 @@
   </div>
 
   <ul>
-    <li>1</li>
-    <li>2</li>
-    <li>3</li>
-    <li>4</li>
-    <li>5<input type="button" value="button"></li>
+    <li>li 1</li>
+    <li>li 2 <em>em</em></li>
+    <li>li 3 <span>span</span></li>
+    <li>li 4<button>button</button></li>
+    <li>li 5<input type="button" value="input[type=&quot;button&quot;]"></li>
   </ul>
 
 </body>

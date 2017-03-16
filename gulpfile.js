@@ -27,8 +27,7 @@ gulp.task('reload', function() {
   connect.reload()
 })
 
-
-gulp.task('dist', function() {
+gulp.task('injection', function() {
   gulp
     .src('./src/injection.jdists.js')
     .pipe(jdists())
@@ -37,12 +36,24 @@ gulp.task('dist', function() {
     .pipe(gulp.dest('./'))
 })
 
+gulp.task('readme', function() {
+  gulp
+    .src('./src/README.jdists.md')
+    .pipe(jdists({
+      clean: false
+    }))
+    .pipe(rename('README.md'))
+    .pipe(gulp.dest('./'))
+})
+
+gulp.task('dist', ['injection', 'readme'])
+
 gulp.task('build', function() {
   gulp.src('./src/css/*.less')
     .pipe(less())
     .pipe(autoprefixer({
-        browsers: ['last 2 versions'],
-        cascade: false
+      browsers: ['last 2 versions'],
+      cascade: false
     }))
     .pipe(cleanCSS())
     .pipe(gulp.dest('./src/css'))

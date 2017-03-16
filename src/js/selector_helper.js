@@ -8,14 +8,14 @@
   /*<injection-js>*/
   var elements = [].slice.apply(selector_helper.querySelectorAll('*'))
 
-  elements.forEach(function (item) {
+  elements.forEach(function(item) {
     if (item.style) {
       // 內连样式
-      item.style['-webkit-animation'] = item.style.animation = 'none'
+      item.style.outline = item.style['-webkit-animation'] = item.style.animation = 'none'
     }
   })
 
-  var style = selector_helper.querySelector('style');
+  var style = selector_helper.querySelector('style')
   if (!style) {
     return
   }
@@ -37,7 +37,14 @@
   if (selector_query) {
     selector_query.addEventListener('input', function() {
       if (!(/[{}]/.test(selector_query.value))) {
-        style.innerHTML = styleTemplate.innerHTML.replace('{{input}}', selector_query.value)
+        var css = styleTemplate.innerHTML.replace('{{input}}', selector_query.value)
+        var textNode = style.firstChild
+        if (!textNode) {
+          textNode = document.createTextNode(css)
+          style.appendChild(textNode)
+        } else {
+          textNode.nodeValue = css
+        }
       }
     })
   }
