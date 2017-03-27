@@ -1,87 +1,93 @@
 #selector_helper {
 
   position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
+  width: 300px;
+  border: gray solid 1px;
+  border-radius: 3px;
+
+  left: 100px;
+  top: 30px;
   z-index: 2012122324;
 
   ul, li, button, a, p, input, select, textarea, label {
     margin: 0;
     padding: 0;
-    font: 12px/1.125 Arial,Helvetica,sans-serif;
+    box-sizing: border-box;
+    font: 18px/1.125 Arial, Helvetica, sans-serif;
   }
 
-  .selector_helper_panel {
-    height: 38px;
-    background-color: #484848;
-    opacity: 0.8;
-  }
+  .panel_header {
+    height: 24px;
+    line-height: 24px;
+    position: relative;
+    background: #24292e;
+    color: #fff;
+    padding: 2px 5px;
+    user-select: none;
+    cursor: move;
 
-  .selector_icon {
-    text-decoration: none;
-    &:after {
-      margin-left: 4px;
-      display: inline-block;
-      content: '@zswang';
-      color: gray;
-      line-height: 40px;
+    .image_logo {
+      float: left;
+      cursor: pointer;
+      color: #fff;
+      text-decoration: none;
+    }
+
+    .label_title {
+      float: left;
+      margin-left: 5px;
+    }
+
+    .btn_close {
+      float: right;
+      cursor: pointer;
     }
   }
 
-  .selector_logo {
-    background-position: left -1017px;
-    display: block;
-    width: 75px;
-    height: 38px;
-  }
+  .list_drop_down {
+    left: 30px;
 
-  ul {
-    height: 38px;
-    left: 80px;
-    top: 0;
+    font-size: 18px;
     position: absolute;
-    list-style: none outside none;
-  }
+    padding: 5px;
+    border: gray solid 1px;
+    list-style: none;
+    margin: -5px 0 0 0;
+    background: white;
+    display: none;
 
-  li {
-    float: left;
-    margin: 10px 5px;
-  }
+    em {
+      color: red;
+    }
 
-  label {
-    color: #848484;
-    margin: 0 5px 0 0;
-  }
-
-  input[type="text"] {
-    background-color: #9F9F9F;
-    border: 1px solid black;
-    color: #222;
-    height: 18px;
-    width: 400px;
-  }
-
-  select {
-    height: 20px;
-  }
-
-  .selector_contraction {
-    background-position: left -1060px;
-    position: absolute;
-    left: 148px;
-    top: 5px;
-    display: block;
-    height: 27px;
-    width: 26px;
-    &:hover {
-      background-position: -29px -1060px;
+    .selected {
+      background: blue;
+      color: white;
     }
   }
 
-  #selector_close {
-    float: right;
+  .panel_content {
+    background: white;
+    padding: 5px;
+
+    .text_query {
+      width: 100%;
+      font-size: 18px;
+    }
   }
+
+  &, * {
+    outline: none;
+    animation: none;
+  }
+  // var elements = [].slice.apply(selector_helper.querySelectorAll('*'))
+  // elements.push(selector_helper)
+  // elements.forEach(function(item) {
+  //   if (item.style) {
+  //     // 內连样式
+  //     item.style.outline = item.style['-webkit-animation'] = item.style.animation = 'none'
+  //   }
+  // })
 
 }
 

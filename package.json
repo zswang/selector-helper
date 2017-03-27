@@ -6,7 +6,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dist": "gulp dist"
+    "dist": "gulp dist",
+    "debug": "gulp"
   },
   "repository": {
     "type": "git",
