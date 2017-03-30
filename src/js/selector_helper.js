@@ -6,6 +6,15 @@
   }
 
   /*<injection-js>*/
+  var selector_query = selector_helper.querySelector('.panel_content .text_query')
+
+  selector_helper.onshow = function () {
+    if (selector_query) {
+      selector_query.focus()
+      changeQuery(selector_query.value)
+    }
+  }
+
   function selectors() {
     var dict = {}
 
@@ -51,15 +60,6 @@
     return
   }
 
-  var selector_close = selector_helper.querySelector('.panel_header .btn_close')
-
-  if (selector_close) {
-    selector_close.addEventListener('click', function() {
-      selector_helper.style.display = 'none'
-    })
-  }
-
-
   var selector_header = selector_helper.querySelector('.panel_header')
   if (selector_header) {
     var origin;
@@ -91,15 +91,24 @@
     });
   }
 
-  var selector_query = selector_helper.querySelector('.panel_content .text_query')
+  var selector_close = selector_helper.querySelector('.panel_header .btn_close')
+
+  if (selector_close) {
+    selector_close.addEventListener('click', function() {
+      selector_helper.style.display = 'none'
+      if (selector_query) {
+        changeQuery('')
+      }
+    })
+  }
 
   if (!selector_query) {
     return;
   }
 
-  function changeQuery() {
-    if (!(/[{}]/.test(selector_query.value))) {
-      var css = styleTemplate.innerHTML.replace('{{input}}', selector_query.value)
+  function changeQuery(text) {
+    if (!(/[{}]/.test(text))) {
+      var css = styleTemplate.innerHTML.replace('{{input}}', text)
       var textNode = style.firstChild
       if (!textNode) {
         textNode = document.createTextNode(css)
@@ -116,7 +125,7 @@
   var selectIndex = 0;
 
   selector_query.addEventListener('input', function (e) {
-    changeQuery()
+    changeQuery(selector_query.value)
     var text = selector_query.value.slice(0, selector_query.selectionEnd)
     var query = ''
 
@@ -207,7 +216,7 @@
       selector_query.value = value + right
       selector_query.selectionEnd = selector_query.value.length - right.length
       listDropDown.style.display = ''
-      changeQuery()
+      changeQuery(selector_query.value)
     }
 
     // console.log(e.keyCode)

@@ -11,6 +11,7 @@ const uglify = require('gulp-uglify')
 const cleanCSS = require('gulp-clean-css')
 const autoprefixer = require('gulp-autoprefixer')
 const rename = require("gulp-rename")
+const replace = require('gulp-replace')
 
 gulp.task('connect', function() {
   connect.server({
@@ -43,6 +44,7 @@ gulp.task('readme', function() {
       clean: false
     }))
     .pipe(rename('README.md'))
+    .pipe(replace(/javascript:!function/g, 'javascript:void function'))
     .pipe(gulp.dest('./'))
 })
 

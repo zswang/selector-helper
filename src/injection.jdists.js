@@ -4,10 +4,13 @@
 
   if (selector_helper) {
     selector_helper.style.display = ''
+    if (selector_helper.onshow) {
+      selector_helper.onshow()
+    }
     return
   }
 
-  var selector_helper = document.createElement('div')
+  selector_helper = document.createElement('div')
   selector_helper.id = 'selector_helper'
   selector_helper.innerHTML = <!--jdists encoding='quoted' import='dev.html?injection-html' /-->
 
